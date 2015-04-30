@@ -108,7 +108,7 @@ public class UserList : GreeterList
         }
     }
 
-    private string _default_session = "ubuntu";
+    private string _default_session = "cinnamon";
     public string default_session
     {
         get
