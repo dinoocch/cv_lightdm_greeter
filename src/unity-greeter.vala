@@ -15,13 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Authored by: Robert Ancell <robert.ancell@canonical.com>
+ *
+ * Edited by: Dino Occhialini <dbo130030@utdallas.com>
  */
 
 public const int grid_size = 40;
 
-public class UnityGreeter
+public class CvGreeter
 {
-    public static UnityGreeter singleton;
+    public static CvGreeter singleton;
 
     public signal void show_message (string text, LightDM.MessageType type);
     public signal void show_prompt (string text, LightDM.PromptType type);
@@ -48,7 +50,7 @@ public class UnityGreeter
 
     private DialogDBusInterface dbus_object;
 
-    private UnityGreeter (bool test_mode_)
+    private CvGreeter (bool test_mode_)
     {
         singleton = this;
         test_mode = test_mode_;
@@ -80,7 +82,7 @@ public class UnityGreeter
             settings_daemon.start ();
         }
 
-        var state_dir = Path.build_filename (Environment.get_user_cache_dir (), "unity-greeter");
+        var state_dir = Path.build_filename (Environment.get_user_cache_dir (), "cv-greeter");
         DirUtils.create_with_parents (state_dir, 0775);
         
         var xdg_seat = GLib.Environment.get_variable("XDG_SEAT");
@@ -100,7 +102,7 @@ public class UnityGreeter
 
         main_window = new MainWindow ();
 
-        Bus.own_name (BusType.SESSION, "com.canonical.UnityGreeter", BusNameOwnerFlags.NONE);
+        Bus.own_name (BusType.SESSION, "org.collegiumv.cvgreeter", BusNameOwnerFlags.NONE);
 
         dbus_object = new DialogDBusInterface ();
         dbus_object.open_dialog.connect ((type) =>
@@ -512,7 +514,7 @@ public class UnityGreeter
 
         debug ("Loading command line options");
         var c = new OptionContext (/* Arguments and description for --help text */
-                                   _("- Unity Greeter"));
+                                   _("- CV Greeter"));
         c.add_main_entries (options, Config.GETTEXT_PACKAGE);
         c.add_group (Gtk.get_option_group (true));
         try
@@ -530,7 +532,7 @@ public class UnityGreeter
         if (do_show_version)
         {
             /* Note, not translated so can be easily parsed */
-            stderr.printf ("unity-greeter %s\n", Config.VERSION);
+            stderr.printf ("cv-greeter %s\n", Config.VERSION);
             return Posix.EXIT_SUCCESS;
         }
 
