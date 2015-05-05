@@ -1,4 +1,4 @@
-/* -*- Mode: Vala; indent-tabs-mode: nil; tab-width: 4 -*-
+/* -*- Mode: Vala; indent-abs-mode: nil; tab-width: 4 -*-
  *
  * Copyright (C) 2011,2012 Canonical Ltd
  *
