@@ -102,7 +102,7 @@ public class CvGreeter
 
         main_window = new MainWindow ();
 
-        Bus.own_name (BusType.SESSION, "org.collegiumv.cvgreeter", BusNameOwnerFlags.NONE);
+        Bus.own_name (BusType.SESSION, "org.collegiumv.cv-greeter", BusNameOwnerFlags.NONE);
 
         dbus_object = new DialogDBusInterface ();
         dbus_object.open_dialog.connect ((type) =>
@@ -274,7 +274,7 @@ public class CvGreeter
 
     public void authenticate_remote (string? session, string? userid)
     {
-        UnityGreeter.singleton.greeter.authenticate_remote (session, userid);
+        CvGreeter.singleton.greeter.authenticate_remote (session, userid);
     }
 
     public void cancel_authentication ()
@@ -495,7 +495,7 @@ public class CvGreeter
         log_timer = new Timer ();
         Log.set_default_handler (log_cb);
 
-        debug ("Starting unity-greeter %s UID=%d LANG=%s", Config.VERSION, (int) Posix.getuid (), Environment.get_variable ("LANG"));
+        debug ("Starting cv-greeter %s UID=%d LANG=%s", Config.VERSION, (int) Posix.getuid (), Environment.get_variable ("LANG"));
 
         /* Set the cursor to not be the crap default */
         debug ("Setting cursor");
@@ -563,8 +563,8 @@ public class CvGreeter
         if (value != "")
             settings.set ("gtk-xft-rgba", value, null);
 
-        debug ("Creating Unity Greeter");
-        var greeter = new UnityGreeter (do_test_mode);
+        debug ("Creating CV Greeter");
+        var greeter = new CvGreeter (do_test_mode);
 
         debug ("Showing greeter");
         greeter.show ();

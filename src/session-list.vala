@@ -15,6 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Authors: Michael Terry <michael.terry@canonical.com>
+ * 
+ * Edited: Dino Occhialini <dbo130030@utdallas.edu>
  */
 
 public class SessionPrompt : PromptBox
@@ -36,7 +38,7 @@ public class SessionPrompt : PromptBox
 
         box = new ToggleBox (default_session, session);
 
-        if (UnityGreeter.singleton.test_mode)
+        if (CvGreeter.singleton.test_mode)
         {
             box.add_item ("gnome", "GNOME", SessionList.get_badge ("gnome"));
             box.add_item ("kde", "KDE", SessionList.get_badge ("kde"));

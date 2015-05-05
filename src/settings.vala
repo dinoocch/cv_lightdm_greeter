@@ -16,6 +16,8 @@
  *
  * Authors: Robert Ancell <robert.ancell@canonical.com>
  *          Michael Terry <michael.terry@canonical.com>
+ *
+ * Edited: Dino Occhialini <dbo130030@utdallas.edu> 
  */
 
 public class UGSettings
@@ -97,5 +99,5 @@ public class UGSettings
         return gsettings.set_strv (key, value);
     }
 
-    private static const string SCHEMA = "org.collegiumv.greeter";
+    private static const string SCHEMA = "org.collegiumv.cvgreeter";
 }
